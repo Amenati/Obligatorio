@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgenciaViajesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AEROPUERTO">
+    <Key>
+      <PropertyRef Name="CodigoAP" />
+    </Key>
+    <Property Name="CodigoAP" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="ImpLlegada" Type="int" Nullable="false" />
+    <Property Name="ImpPartida" Type="int" Nullable="false" />
+    <Property Name="NombreAP" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="CodigoCiudad" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="CodigoCiudad" />
+    </Key>
+    <Property Name="CodigoCiudad" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="NomCiudad" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Pais" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="NumPasaporte" />
+    </Key>
+    <Property Name="NumPasaporte" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NombreCliente" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ClientPass" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="NumTarjeta" Type="bigint" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="UsuLog" />
+    </Key>
+    <Property Name="UsuLog" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="NombreUsu" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="UsuPass" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Cargo" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pasajeros">
+    <Key>
+      <PropertyRef Name="NroVenta" />
+      <PropertyRef Name="NumPasaporte" />
+      <PropertyRef Name="NroAsiento" />
+    </Key>
+    <Property Name="NroVenta" Type="int" Nullable="false" />
+    <Property Name="NumPasaporte" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NroAsiento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="NroVenta" />
+    </Key>
+    <Property Name="NroVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaCompra" Type="datetime" Nullable="false" />
+    <Property Name="Monto" Type="int" Nullable="false" />
+    <Property Name="Usulog" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="CodigoVuelo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="NumPasaporte" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vuelos">
+    <Key>
+      <PropertyRef Name="CodigoVuelo" />
+    </Key>
+    <Property Name="CodigoVuelo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="FechaPartida" Type="datetime" Nullable="false" />
+    <Property Name="FechaLlegada" Type="datetime" Nullable="false" />
+    <Property Name="CantAsientos" Type="int" Nullable="false" />
+    <Property Name="PrecioPasaje" Type="int" Nullable="false" />
+    <Property Name="CodigoAeropOrigen" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="CodigoAeropDestino" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__AEROPUERT__Codig__1367E606">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="CodigoCiudad" />
+      </Principal>
+      <Dependent Role="AEROPUERTO">
+        <PropertyRef Name="CodigoCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pasajeros__NroVe__2D27B809">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+    <End Role="Pasajeros" Type="Self.Pasajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="NroVenta" />
+      </Principal>
+      <Dependent Role="Pasajeros">
+        <PropertyRef Name="NroVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pasajeros__NumPa__2E1BDC42">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pasajeros" Type="Self.Pasajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="NumPasaporte" />
+      </Principal>
+      <Dependent Role="Pasajeros">
+        <PropertyRef Name="NumPasaporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__CodigoVu__276EDEB3">
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vuelos">
+        <PropertyRef Name="CodigoVuelo" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="CodigoVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__NumPasap__286302EC">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="NumPasaporte" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="NumPasaporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__Usulog__267ABA7A">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="UsuLog" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Usulog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vuelos__CodigoAe__1CF15040">
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="1" />
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AEROPUERTO">
+        <PropertyRef Name="CodigoAP" />
+      </Principal>
+      <Dependent Role="Vuelos">
+        <PropertyRef Name="CodigoAeropOrigen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vuelos__CodigoAe__1DE57479">
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="1" />
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AEROPUERTO">
+        <PropertyRef Name="CodigoAP" />
+      </Principal>
+      <Dependent Role="Vuelos">
+        <PropertyRef Name="CodigoAeropDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AgregarCiudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="nomCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="pais" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AltaPasajero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nroVenta" Type="int" Mode="In" />
+    <Parameter Name="numPasaporte" Type="varchar" Mode="In" />
+    <Parameter Name="nroAsiento" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AltaVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="monto" Type="int" Mode="In" />
+    <Parameter Name="usulog" Type="varchar" Mode="In" />
+    <Parameter Name="codigoVuelo" Type="varchar" Mode="In" />
+    <Parameter Name="numPasaporte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AltaVuelo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoVuelo" Type="varchar" Mode="In" />
+    <Parameter Name="fechaPartida" Type="datetime" Mode="In" />
+    <Parameter Name="fechaLlegada" Type="datetime" Mode="In" />
+    <Parameter Name="cantAsientos" Type="int" Mode="In" />
+    <Parameter Name="precioPasaje" Type="int" Mode="In" />
+    <Parameter Name="codigoAeropOrigen" Type="varchar" Mode="In" />
+    <Parameter Name="codigoAeropDestino" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="BuscarCiudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCiudad" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="BuscarCiudadActiva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCiudad" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="BuscarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nomUs" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CreoUsuarioComun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuLog" Type="varchar" Mode="In" />
+    <Parameter Name="usuPass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EliminarCiudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCiudad" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ListadoVuelos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="listarAeropuerto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="listarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarPasajeros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nroVenta" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ListarVentasCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="numPasporte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="LogueoEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuLog" Type="varchar" Mode="In" />
+    <Parameter Name="usuPass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ModificarCiudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="nomCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="pais" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_AgregarAeropuerto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="CodigoAP" Type="varchar" Mode="In" />
+    <Parameter Name="ImpLlegada" Type="int" Mode="In" />
+    <Parameter Name="ImpPartida" Type="int" Mode="In" />
+    <Parameter Name="NombreAP" Type="varchar" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_AgregarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPasaporte" Type="varchar" Mode="In" />
+    <Parameter Name="NombreCliente" Type="varchar" Mode="In" />
+    <Parameter Name="ClientePass" Type="varchar" Mode="In" />
+    <Parameter Name="NumTarjeta" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarAeropuertoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoAP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarAeropuertoTodos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoAP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarClienteActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPasaporte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarClienteTodos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPasaporte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_EliminarAeropuerto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoAP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_EliminarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPasaporte" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ModificarAeropuerto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoCiudad" Type="varchar" Mode="In" />
+    <Parameter Name="CodigoAP" Type="varchar" Mode="In" />
+    <Parameter Name="ImpLlegada" Type="int" Mode="In" />
+    <Parameter Name="ImpPartida" Type="int" Mode="In" />
+    <Parameter Name="NombreAP" Type="varchar" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ModificarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPasaporte" Type="varchar" Mode="In" />
+    <Parameter Name="NombreCliente" Type="varchar" Mode="In" />
+    <Parameter Name="ClientePass" Type="varchar" Mode="In" />
+    <Parameter Name="NumTarjeta" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="AgenciaViajesModelStoreContainer">
+    <EntitySet Name="AEROPUERTO" EntityType="Self.AEROPUERTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pasajeros" EntityType="Self.Pasajeros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vuelos" EntityType="Self.Vuelos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AEROPUERT__Codig__1367E606" Association="Self.FK__AEROPUERT__Codig__1367E606">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pasajeros__NroVe__2D27B809" Association="Self.FK__Pasajeros__NroVe__2D27B809">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Pasajeros" EntitySet="Pasajeros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pasajeros__NumPa__2E1BDC42" Association="Self.FK__Pasajeros__NumPa__2E1BDC42">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pasajeros" EntitySet="Pasajeros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__CodigoVu__276EDEB3" Association="Self.FK__Ventas__CodigoVu__276EDEB3">
+      <End Role="Vuelos" EntitySet="Vuelos" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__NumPasap__286302EC" Association="Self.FK__Ventas__NumPasap__286302EC">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__Usulog__267ABA7A" Association="Self.FK__Ventas__Usulog__267ABA7A">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vuelos__CodigoAe__1CF15040" Association="Self.FK__Vuelos__CodigoAe__1CF15040">
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+      <End Role="Vuelos" EntitySet="Vuelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vuelos__CodigoAe__1DE57479" Association="Self.FK__Vuelos__CodigoAe__1DE57479">
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+      <End Role="Vuelos" EntitySet="Vuelos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

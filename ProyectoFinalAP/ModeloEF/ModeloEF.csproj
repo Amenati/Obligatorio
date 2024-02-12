@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{73766AAD-332C-47FB-A349-E97EFCD41E18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModeloEF</RootNamespace>
+    <AssemblyName>ModeloEF</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AEROPUERTO.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarCiudadActiva_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarCiudad_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarEmpleado_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ciudad.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleado.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityAgencia.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityAgencia.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityAgencia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityAgencia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityAgencia.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoVuelos_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarAeropuerto_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarClientes_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListarPasajeros_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListarVentasCliente_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pasajeros.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_BuscarAeropuertoActivo_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_BuscarAeropuertoTodos_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_BuscarClienteActivo_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_BuscarClienteTodos_Result.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vuelos.cs">
+      <DependentUpon>EntityAgencia.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EntityAgencia.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityAgencia.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EntityAgencia.edmx.diagram">
+      <DependentUpon>EntityAgencia.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityAgencia.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityAgencia.edmx</DependentUpon>
+      <LastGenOutput>EntityAgencia.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityAgencia.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityAgencia.edmx</DependentUpon>
+      <LastGenOutput>EntityAgencia.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

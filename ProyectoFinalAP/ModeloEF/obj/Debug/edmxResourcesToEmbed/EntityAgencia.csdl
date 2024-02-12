@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgenciaViajesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AEROPUERTO">
+    <Key>
+      <PropertyRef Name="CodigoAP" />
+    </Key>
+    <Property Name="CodigoAP" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ImpLlegada" Type="Int32" Nullable="false" />
+    <Property Name="ImpPartida" Type="Int32" Nullable="false" />
+    <Property Name="NombreAP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoCiudad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK__AEROPUERT__Codig__1367E606" FromRole="AEROPUERTO" ToRole="Ciudad" />
+  </EntityType>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="CodigoCiudad" />
+    </Key>
+    <Property Name="CodigoCiudad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomCiudad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="NumPasaporte" />
+    </Key>
+    <Property Name="NumPasaporte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombreCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClientPass" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumTarjeta" Type="Int64" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="UsuLog" />
+    </Key>
+    <Property Name="UsuLog" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombreUsu" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UsuPass" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cargo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pasajeros">
+    <Key>
+      <PropertyRef Name="NroVenta" />
+      <PropertyRef Name="NumPasaporte" />
+      <PropertyRef Name="NroAsiento" />
+    </Key>
+    <Property Name="NroVenta" Type="Int32" Nullable="false" />
+    <Property Name="NumPasaporte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NroAsiento" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="NroVenta" />
+    </Key>
+    <Property Name="NroVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Monto" Type="Int32" Nullable="false" />
+    <Property Name="Usulog" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoVuelo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumPasaporte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Ventas__NumPasap__286302EC" FromRole="Ventas" ToRole="Cliente" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Ventas__Usulog__267ABA7A" FromRole="Ventas" ToRole="Empleado" />
+    <NavigationProperty Name="Pasajeros" Relationship="Self.FK__Pasajeros__NroVe__2D27B809" FromRole="Ventas" ToRole="Pasajeros" />
+    <NavigationProperty Name="Vuelos" Relationship="Self.FK__Ventas__CodigoVu__276EDEB3" FromRole="Ventas" ToRole="Vuelos" />
+  </EntityType>
+  <EntityType Name="Vuelos">
+    <Key>
+      <PropertyRef Name="CodigoVuelo" />
+    </Key>
+    <Property Name="CodigoVuelo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaPartida" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaLlegada" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CantAsientos" Type="Int32" Nullable="false" />
+    <Property Name="PrecioPasaje" Type="Int32" Nullable="false" />
+    <Property Name="CodigoAeropOrigen" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoAeropDestino" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AEROPUERTO" Relationship="Self.FK__Vuelos__CodigoAe__1CF15040" FromRole="Vuelos" ToRole="AEROPUERTO" />
+    <NavigationProperty Name="AEROPUERTO1" Relationship="Self.FK__Vuelos__CodigoAe__1DE57479" FromRole="Vuelos" ToRole="AEROPUERTO" />
+  </EntityType>
+  <Association Name="FK__AEROPUERT__Codig__1367E606">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="CodigoCiudad" />
+      </Principal>
+      <Dependent Role="AEROPUERTO">
+        <PropertyRef Name="CodigoCiudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vuelos__CodigoAe__1CF15040">
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="1" />
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AEROPUERTO">
+        <PropertyRef Name="CodigoAP" />
+      </Principal>
+      <Dependent Role="Vuelos">
+        <PropertyRef Name="CodigoAeropOrigen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vuelos__CodigoAe__1DE57479">
+    <End Role="AEROPUERTO" Type="Self.AEROPUERTO" Multiplicity="1" />
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AEROPUERTO">
+        <PropertyRef Name="CodigoAP" />
+      </Principal>
+      <Dependent Role="Vuelos">
+        <PropertyRef Name="CodigoAeropDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pasajeros__NumPa__2E1BDC42">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pasajeros" Type="Self.Pasajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="NumPasaporte" />
+      </Principal>
+      <Dependent Role="Pasajeros">
+        <PropertyRef Name="NumPasaporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__NumPasap__286302EC">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="NumPasaporte" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="NumPasaporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__Usulog__267ABA7A">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="UsuLog" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Usulog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pasajeros__NroVe__2D27B809">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+    <End Role="Pasajeros" Type="Self.Pasajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="NroVenta" />
+      </Principal>
+      <Dependent Role="Pasajeros">
+        <PropertyRef Name="NroVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__CodigoVu__276EDEB3">
+    <End Role="Vuelos" Type="Self.Vuelos" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vuelos">
+        <PropertyRef Name="CodigoVuelo" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="CodigoVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AgenciaViajesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AEROPUERTO" EntityType="Self.AEROPUERTO" />
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="Pasajeros" EntityType="Self.Pasajeros" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+    <EntitySet Name="Vuelos" EntityType="Self.Vuelos" />
+    <AssociationSet Name="FK__AEROPUERT__Codig__1367E606" Association="Self.FK__AEROPUERT__Codig__1367E606">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vuelos__CodigoAe__1CF15040" Association="Self.FK__Vuelos__CodigoAe__1CF15040">
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+      <End Role="Vuelos" EntitySet="Vuelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vuelos__CodigoAe__1DE57479" Association="Self.FK__Vuelos__CodigoAe__1DE57479">
+      <End Role="AEROPUERTO" EntitySet="AEROPUERTO" />
+      <End Role="Vuelos" EntitySet="Vuelos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pasajeros__NumPa__2E1BDC42" Association="Self.FK__Pasajeros__NumPa__2E1BDC42">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pasajeros" EntitySet="Pasajeros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__NumPasap__286302EC" Association="Self.FK__Ventas__NumPasap__286302EC">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__Usulog__267ABA7A" Association="Self.FK__Ventas__Usulog__267ABA7A">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pasajeros__NroVe__2D27B809" Association="Self.FK__Pasajeros__NroVe__2D27B809">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Pasajeros" EntitySet="Pasajeros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__CodigoVu__276EDEB3" Association="Self.FK__Ventas__CodigoVu__276EDEB3">
+      <End Role="Vuelos" EntitySet="Vuelos" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <FunctionImport Name="AgregarCiudad">
+      <Parameter Name="codigoCiudad" Mode="In" Type="String" />
+      <Parameter Name="nomCiudad" Mode="In" Type="String" />
+      <Parameter Name="pais" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AltaPasajero">
+      <Parameter Name="nroVenta" Mode="In" Type="Int32" />
+      <Parameter Name="numPasaporte" Mode="In" Type="String" />
+      <Parameter Name="nroAsiento" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AltaVentas">
+      <Parameter Name="monto" Mode="In" Type="Int32" />
+      <Parameter Name="usulog" Mode="In" Type="String" />
+      <Parameter Name="codigoVuelo" Mode="In" Type="String" />
+      <Parameter Name="numPasaporte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AltaVuelo">
+      <Parameter Name="codigoVuelo" Mode="In" Type="String" />
+      <Parameter Name="fechaPartida" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaLlegada" Mode="In" Type="DateTime" />
+      <Parameter Name="cantAsientos" Mode="In" Type="Int32" />
+      <Parameter Name="precioPasaje" Mode="In" Type="Int32" />
+      <Parameter Name="codigoAeropOrigen" Mode="In" Type="String" />
+      <Parameter Name="codigoAeropDestino" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarCiudad" ReturnType="Collection(AgenciaViajesModel.BuscarCiudad_Result)">
+      <Parameter Name="codigoCiudad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarCiudadActiva" ReturnType="Collection(AgenciaViajesModel.BuscarCiudadActiva_Result)">
+      <Parameter Name="codigoCiudad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarEmpleado" ReturnType="Collection(AgenciaViajesModel.BuscarEmpleado_Result)">
+      <Parameter Name="nomUs" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreoUsuarioComun">
+      <Parameter Name="usuLog" Mode="In" Type="String" />
+      <Parameter Name="usuPass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EliminarCiudad">
+      <Parameter Name="codigoCiudad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ListadoVuelos" ReturnType="Collection(AgenciaViajesModel.ListadoVuelos_Result)" />
+    <FunctionImport Name="listarAeropuerto" ReturnType="Collection(AgenciaViajesModel.listarAeropuerto_Result)" />
+    <FunctionImport Name="listarClientes" ReturnType="Collection(AgenciaViajesModel.listarClientes_Result)" />
+    <FunctionImport Name="ListarPasajeros" ReturnType="Collection(AgenciaViajesModel.ListarPasajeros_Result)">
+      <Parameter Name="nroVenta" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ListarVentasCliente" ReturnType="Collection(AgenciaViajesModel.ListarVentasCliente_Result)">
+      <Parameter Name="numPasporte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LogueoEmpleado" ReturnType="Collection(Int32)">
+      <Parameter Name="usuLog" Mode="In" Type="String" />
+      <Parameter Name="usuPass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ModificarCiudad">
+      <Parameter Name="codigoCiudad" Mode="In" Type="String" />
+      <Parameter Name="nomCiudad" Mode="In" Type="String" />
+      <Parameter Name="pais" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarAeropuerto">
+      <Parameter Name="CodigoCiudad" Mode="In" Type="String" />
+      <Parameter Name="CodigoAP" Mode="In" Type="String" />
+      <Parameter Name="ImpLlegada" Mode="In" Type="Int32" />
+      <Parameter Name="ImpPartida" Mode="In" Type="Int32" />
+      <Parameter Name="NombreAP" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgregarCliente">
+      <Parameter Name="NumPasaporte" Mode="In" Type="String" />
+      <Parameter Name="NombreCliente" Mode="In" Type="String" />
+      <Parameter Name="ClientePass" Mode="In" Type="String" />
+      <Parameter Name="NumTarjeta" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BuscarAeropuertoActivo" ReturnType="Collection(AgenciaViajesModel.sp_BuscarAeropuertoActivo_Result)">
+      <Parameter Name="CodigoAP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BuscarAeropuertoTodos" ReturnType="Collection(AgenciaViajesModel.sp_BuscarAeropuertoTodos_Result)">
+      <Parameter Name="CodigoAP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BuscarClienteActivo" ReturnType="Collection(AgenciaViajesModel.sp_BuscarClienteActivo_Result)">
+      <Parameter Name="NumPasaporte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BuscarClienteTodos" ReturnType="Collection(AgenciaViajesModel.sp_BuscarClienteTodos_Result)">
+      <Parameter Name="NumPasaporte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarAeropuerto">
+      <Parameter Name="CodigoAP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarCliente">
+      <Parameter Name="NumPasaporte" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ModificarAeropuerto">
+      <Parameter Name="CodigoCiudad" Mode="In" Type="String" />
+      <Parameter Name="CodigoAP" Mode="In" Type="String" />
+      <Parameter Name="ImpLlegada" Mode="In" Type="Int32" />
+      <Parameter Name="ImpPartida" Mode="In" Type="Int32" />
+      <Parameter Name="NombreAP" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ModificarCliente">
+      <Parameter Name="NumPasaporte" Mode="In" Type="String" />
+      <Parameter Name="NombreCliente" Mode="In" Type="String" />
+      <Parameter Name="ClientePass" Mode="In" Type="String" />
+      <Parameter Name="NumTarjeta" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="BuscarCiudad_Result">
+    <Property Type="String" Name="CodigoCiudad" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="NomCiudad" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Pais" Nullable="false" MaxLength="40" />
+    <Property Type="Boolean" Name="Activo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="BuscarCiudadActiva_Result">
+    <Property Type="String" Name="CodigoCiudad" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="NomCiudad" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Pais" Nullable="false" MaxLength="40" />
+    <Property Type="Boolean" Name="Activo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="BuscarEmpleado_Result">
+    <Property Type="String" Name="UsuLog" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="NombreUsu" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="UsuPass" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="Cargo" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="ListadoVuelos_Result">
+    <Property Type="String" Name="CodigoVuelo" Nullable="false" MaxLength="15" />
+    <Property Type="DateTime" Name="FechaPartida" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="FechaLlegada" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="CantAsientos" Nullable="false" />
+    <Property Type="Int32" Name="PrecioPasaje" Nullable="false" />
+    <Property Type="String" Name="CodigoAeropOrigen" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="CodigoAeropDestino" Nullable="false" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="listarAeropuerto_Result">
+    <Property Type="String" Name="CodigoAP" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="ImpLlegada" Nullable="false" />
+    <Property Type="Int32" Name="ImpPartida" Nullable="false" />
+    <Property Type="String" Name="NombreAP" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="CodigoCiudad" Nullable="false" MaxLength="6" />
+    <Property Type="Boolean" Name="Activo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="listarClientes_Result">
+    <Property Type="String" Name="NumPasaporte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="NombreCliente" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ClientPass" Nullable="false" MaxLength="8" />
+    <Property Type="Int64" Name="NumTarjeta" Nullable="false" />
+    <Property Type="Boolean" Name="Activo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListarPasajeros_Result">
+    <Property Type="Int32" Name="NroVenta" Nullable="false" />
+    <Property Type="String" Name="NumPasaporte" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="NroAsiento" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListarVentasCliente_Result">
+    <Property Type="Int32" Name="NroVenta" Nullable="false" />
+    <Property Type="DateTime" Name="FechaCompra" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="Monto" Nullable="false" />
+    <Property Type="String" Name="Usulog" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="CodigoVuelo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="NumPasaporte" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="sp_BuscarAeropuertoActivo_Result">
+    <Property Type="String" Name="CodigoAP" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="ImpLlegada" Nullable="false" />
+    <Property Type="Int32" Name="ImpPartida" Nullable="false" />
+    <Property Type="String" Name="NombreAP" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="CodigoCiudad" Nullable="false" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="sp_BuscarAeropuertoTodos_Result">
+    <Property Type="String" Name="CodigoAP" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="ImpLlegada" Nullable="false" />
+    <Property Type="Int32" Name="ImpPartida" Nullable="false" />
+    <Property Type="String" Name="NombreAP" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="CodigoCiudad" Nullable="false" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="sp_BuscarClienteActivo_Result">
+    <Property Type="String" Name="NumPasaporte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="NombreCliente" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ClientPass" Nullable="false" MaxLength="8" />
+    <Property Type="Int64" Name="NumTarjeta" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_BuscarClienteTodos_Result">
+    <Property Type="String" Name="NumPasaporte" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="NombreCliente" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ClientPass" Nullable="false" MaxLength="8" />
+    <Property Type="Int64" Name="NumTarjeta" Nullable="false" />
+  </ComplexType>
+</Schema>

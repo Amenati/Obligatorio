@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AgenciaViajesModelStoreContainer" CdmEntityContainer="AgenciaViajesEntities">
+    <EntitySetMapping Name="AEROPUERTO">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.AEROPUERTO">
+        <MappingFragment StoreEntitySet="AEROPUERTO">
+          <ScalarProperty Name="CodigoAP" ColumnName="CodigoAP" />
+          <ScalarProperty Name="ImpLlegada" ColumnName="ImpLlegada" />
+          <ScalarProperty Name="ImpPartida" ColumnName="ImpPartida" />
+          <ScalarProperty Name="NombreAP" ColumnName="NombreAP" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciudad">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Ciudad">
+        <MappingFragment StoreEntitySet="Ciudad">
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+          <ScalarProperty Name="NomCiudad" ColumnName="NomCiudad" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+          <ScalarProperty Name="ClientPass" ColumnName="ClientPass" />
+          <ScalarProperty Name="NumTarjeta" ColumnName="NumTarjeta" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="UsuLog" ColumnName="UsuLog" />
+          <ScalarProperty Name="NombreUsu" ColumnName="NombreUsu" />
+          <ScalarProperty Name="UsuPass" ColumnName="UsuPass" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pasajeros">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Pasajeros">
+        <MappingFragment StoreEntitySet="Pasajeros">
+          <ScalarProperty Name="NroVenta" ColumnName="NroVenta" />
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NroAsiento" ColumnName="NroAsiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Ventas">
+        <MappingFragment StoreEntitySet="Ventas">
+          <ScalarProperty Name="NroVenta" ColumnName="NroVenta" />
+          <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Usulog" ColumnName="Usulog" />
+          <ScalarProperty Name="CodigoVuelo" ColumnName="CodigoVuelo" />
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vuelos">
+      <EntityTypeMapping TypeName="AgenciaViajesModel.Vuelos">
+        <MappingFragment StoreEntitySet="Vuelos">
+          <ScalarProperty Name="CodigoVuelo" ColumnName="CodigoVuelo" />
+          <ScalarProperty Name="FechaPartida" ColumnName="FechaPartida" />
+          <ScalarProperty Name="FechaLlegada" ColumnName="FechaLlegada" />
+          <ScalarProperty Name="CantAsientos" ColumnName="CantAsientos" />
+          <ScalarProperty Name="PrecioPasaje" ColumnName="PrecioPasaje" />
+          <ScalarProperty Name="CodigoAeropOrigen" ColumnName="CodigoAeropOrigen" />
+          <ScalarProperty Name="CodigoAeropDestino" ColumnName="CodigoAeropDestino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AgregarCiudad" FunctionName="AgenciaViajesModel.Store.AgregarCiudad" />
+    <FunctionImportMapping FunctionImportName="AltaPasajero" FunctionName="AgenciaViajesModel.Store.AltaPasajero" />
+    <FunctionImportMapping FunctionImportName="AltaVentas" FunctionName="AgenciaViajesModel.Store.AltaVentas" />
+    <FunctionImportMapping FunctionImportName="AltaVuelo" FunctionName="AgenciaViajesModel.Store.AltaVuelo" />
+    <FunctionImportMapping FunctionImportName="BuscarCiudad" FunctionName="AgenciaViajesModel.Store.BuscarCiudad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.BuscarCiudad_Result">
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+          <ScalarProperty Name="NomCiudad" ColumnName="NomCiudad" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BuscarCiudadActiva" FunctionName="AgenciaViajesModel.Store.BuscarCiudadActiva">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.BuscarCiudadActiva_Result">
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+          <ScalarProperty Name="NomCiudad" ColumnName="NomCiudad" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BuscarEmpleado" FunctionName="AgenciaViajesModel.Store.BuscarEmpleado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.BuscarEmpleado_Result">
+          <ScalarProperty Name="UsuLog" ColumnName="UsuLog" />
+          <ScalarProperty Name="NombreUsu" ColumnName="NombreUsu" />
+          <ScalarProperty Name="UsuPass" ColumnName="UsuPass" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CreoUsuarioComun" FunctionName="AgenciaViajesModel.Store.CreoUsuarioComun" />
+    <FunctionImportMapping FunctionImportName="EliminarCiudad" FunctionName="AgenciaViajesModel.Store.EliminarCiudad" />
+    <FunctionImportMapping FunctionImportName="ListadoVuelos" FunctionName="AgenciaViajesModel.Store.ListadoVuelos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.ListadoVuelos_Result">
+          <ScalarProperty Name="CodigoVuelo" ColumnName="CodigoVuelo" />
+          <ScalarProperty Name="FechaPartida" ColumnName="FechaPartida" />
+          <ScalarProperty Name="FechaLlegada" ColumnName="FechaLlegada" />
+          <ScalarProperty Name="CantAsientos" ColumnName="CantAsientos" />
+          <ScalarProperty Name="PrecioPasaje" ColumnName="PrecioPasaje" />
+          <ScalarProperty Name="CodigoAeropOrigen" ColumnName="CodigoAeropOrigen" />
+          <ScalarProperty Name="CodigoAeropDestino" ColumnName="CodigoAeropDestino" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listarAeropuerto" FunctionName="AgenciaViajesModel.Store.listarAeropuerto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.listarAeropuerto_Result">
+          <ScalarProperty Name="CodigoAP" ColumnName="CodigoAP" />
+          <ScalarProperty Name="ImpLlegada" ColumnName="ImpLlegada" />
+          <ScalarProperty Name="ImpPartida" ColumnName="ImpPartida" />
+          <ScalarProperty Name="NombreAP" ColumnName="NombreAP" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listarClientes" FunctionName="AgenciaViajesModel.Store.listarClientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.listarClientes_Result">
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+          <ScalarProperty Name="ClientPass" ColumnName="ClientPass" />
+          <ScalarProperty Name="NumTarjeta" ColumnName="NumTarjeta" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarPasajeros" FunctionName="AgenciaViajesModel.Store.ListarPasajeros">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.ListarPasajeros_Result">
+          <ScalarProperty Name="NroVenta" ColumnName="NroVenta" />
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NroAsiento" ColumnName="NroAsiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarVentasCliente" FunctionName="AgenciaViajesModel.Store.ListarVentasCliente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.ListarVentasCliente_Result">
+          <ScalarProperty Name="NroVenta" ColumnName="NroVenta" />
+          <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Usulog" ColumnName="Usulog" />
+          <ScalarProperty Name="CodigoVuelo" ColumnName="CodigoVuelo" />
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LogueoEmpleado" FunctionName="AgenciaViajesModel.Store.LogueoEmpleado" />
+    <FunctionImportMapping FunctionImportName="ModificarCiudad" FunctionName="AgenciaViajesModel.Store.ModificarCiudad" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarAeropuerto" FunctionName="AgenciaViajesModel.Store.sp_AgregarAeropuerto" />
+    <FunctionImportMapping FunctionImportName="sp_AgregarCliente" FunctionName="AgenciaViajesModel.Store.sp_AgregarCliente" />
+    <FunctionImportMapping FunctionImportName="sp_BuscarAeropuertoActivo" FunctionName="AgenciaViajesModel.Store.sp_BuscarAeropuertoActivo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.sp_BuscarAeropuertoActivo_Result">
+          <ScalarProperty Name="CodigoAP" ColumnName="CodigoAP" />
+          <ScalarProperty Name="ImpLlegada" ColumnName="ImpLlegada" />
+          <ScalarProperty Name="ImpPartida" ColumnName="ImpPartida" />
+          <ScalarProperty Name="NombreAP" ColumnName="NombreAP" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BuscarAeropuertoTodos" FunctionName="AgenciaViajesModel.Store.sp_BuscarAeropuertoTodos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.sp_BuscarAeropuertoTodos_Result">
+          <ScalarProperty Name="CodigoAP" ColumnName="CodigoAP" />
+          <ScalarProperty Name="ImpLlegada" ColumnName="ImpLlegada" />
+          <ScalarProperty Name="ImpPartida" ColumnName="ImpPartida" />
+          <ScalarProperty Name="NombreAP" ColumnName="NombreAP" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BuscarClienteActivo" FunctionName="AgenciaViajesModel.Store.sp_BuscarClienteActivo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.sp_BuscarClienteActivo_Result">
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+          <ScalarProperty Name="ClientPass" ColumnName="ClientPass" />
+          <ScalarProperty Name="NumTarjeta" ColumnName="NumTarjeta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BuscarClienteTodos" FunctionName="AgenciaViajesModel.Store.sp_BuscarClienteTodos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AgenciaViajesModel.sp_BuscarClienteTodos_Result">
+          <ScalarProperty Name="NumPasaporte" ColumnName="NumPasaporte" />
+          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+          <ScalarProperty Name="ClientPass" ColumnName="ClientPass" />
+          <ScalarProperty Name="NumTarjeta" ColumnName="NumTarjeta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EliminarAeropuerto" FunctionName="AgenciaViajesModel.Store.sp_EliminarAeropuerto" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarCliente" FunctionName="AgenciaViajesModel.Store.sp_EliminarCliente" />
+    <FunctionImportMapping FunctionImportName="sp_ModificarAeropuerto" FunctionName="AgenciaViajesModel.Store.sp_ModificarAeropuerto" />
+    <FunctionImportMapping FunctionImportName="sp_ModificarCliente" FunctionName="AgenciaViajesModel.Store.sp_ModificarCliente" />
+  </EntityContainerMapping>
+</Mapping>

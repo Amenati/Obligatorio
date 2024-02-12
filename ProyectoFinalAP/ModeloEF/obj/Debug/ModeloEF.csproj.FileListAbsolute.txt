@@ -1,0 +1,9 @@
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\ModeloEF.dll.config
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\ModeloEF.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\ModeloEF.pdb
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\EntityFramework.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\EntityFramework.xml
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\obj\Debug\ModeloEF.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\ModeloEF\obj\Debug\ModeloEF.pdb

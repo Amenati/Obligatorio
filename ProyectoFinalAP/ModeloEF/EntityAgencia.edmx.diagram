@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b14fc9a07efe460da794dbc1c707a3c2" Name="Diagram1">
+        <EntityTypeShape EntityType="AgenciaViajesModel.AEROPUERTO" Width="1.5" PointX="1.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Ciudad" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Cliente" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Empleado" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Pasajeros" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Ventas" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaViajesModel.Vuelos" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__AEROPUERT__Codig__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Vuelos__CodigoAe__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Vuelos__CodigoAe__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Pasajeros__NumPa__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Ventas__NumPasap__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Ventas__Usulog__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Pasajeros__NroVe__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaViajesModel.FK__Ventas__CodigoVu__276EDEB3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

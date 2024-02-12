@@ -1,0 +1,4 @@
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Users\ignac\OneDrive\Desktop\IGNACIO\IGNACIO\BIOS\Analista Programador\ProyectoFinalAP\ProyectoFinalAP\ProyectoFinalAP\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
